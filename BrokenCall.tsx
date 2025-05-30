@@ -4,16 +4,14 @@ export default function BrokenEffect() {
   const [data, setData] = useState<number[]>([]);
   const [query, setQuery] = useState("initial");
 
-  // 🚨 This function is re-created every render!
   const fetchData = () => {
     console.log("🔁 Fetching data for", query);
-    setData([1, 2, 3]); // pretend this came from an API
+    setData([1, 2, 3]);
   };
 
   useEffect(() => {
     fetchData();
-  }, [fetchData]); // ❌ triggers infinite loop, because fetchData is a new function each time
-
+  }, [fetchData]);
   return (
     <div>
       <h2>Query: {query}</h2>
